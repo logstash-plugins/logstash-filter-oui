@@ -11,8 +11,8 @@ describe LogStash::Filters::Oui do
     CONFIG
 
     sample("message" => "00:50:56") do
-      insist { subject["id"] } == 20566
-      insist { subject["organization"] } == "VMware, Inc."
+      insist { subject["oui"]["id"] } == 20566
+      insist { subject["oui"]["organization"] } == "VMware, Inc."
     end
   end
 end

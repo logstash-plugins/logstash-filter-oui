@@ -37,7 +37,10 @@ class LogStash::Filters::Oui < LogStash::Filters::Base
 
     oui = OUI.find event[@source]
     if ! oui.nil?
-      event[@target] = oui
+      event[@target] = Hash.new
+      oui.each do |key, value|
+        event[@target][key.to_s] = value
+      end
 
       # filter_matched should go in the last line of our successful code
       filter_matched(event)
