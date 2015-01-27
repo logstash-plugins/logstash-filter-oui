@@ -5,13 +5,14 @@ describe LogStash::Filters::Oui do
   describe "Set to OUI" do
     config <<-CONFIG
       filter {
-        tld {
+        oui {
         }
       }
     CONFIG
 
-    sample("message" => "") do
-      insist { subject["message"] } == ""
+    sample("message" => "00:50:56") do
+      insist { subject["id"] } == 20566
+      insist { subject["organization"] } == "VMware, Inc."
     end
   end
 end
