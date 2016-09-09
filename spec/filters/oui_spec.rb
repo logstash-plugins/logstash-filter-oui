@@ -12,8 +12,8 @@ describe LogStash::Filters::Oui do
     end
 
     sample("message" => "00:50:56") do
-      expect(subject["oui"]).to include( "id" => 20566)
-      expect(subject["oui"]["organization"]).to eq("VMware, Inc.")
+      expect(subject.get("oui")).to include( "id" => 20566)
+      expect(subject.get("[oui][organization]")).to eq("VMware, Inc.")
     end
   end
 end
