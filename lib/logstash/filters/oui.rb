@@ -2,10 +2,7 @@
 require "logstash/filters/base"
 require "logstash/namespace"
 
-# This example filter will replace the contents of the default 
-# message field with whatever you specify in the configuration.
-#
-# It is only intended to be used as an example.
+# Logstash filter to parse OUI data from MAC addresses
 class LogStash::Filters::Oui < LogStash::Filters::Base
 
   # Setting the config_name here is required. This is how you
@@ -18,8 +15,7 @@ class LogStash::Filters::Oui < LogStash::Filters::Base
   # }
   #
   config_name "oui"
-  milestone 1
-  
+
   # The source field to parse
   config :source, :validate => :string, :default => "message"
 
@@ -28,22 +24,21 @@ class LogStash::Filters::Oui < LogStash::Filters::Base
 
   public
   def register
-    # Add instance variables 
     require 'oui'
   end # def register
 
   public
   def filter(event)
 
-    oui = OUI.find event[@source]
+    oui = OUI.find event.get(@source)
     if ! oui.nil?
-      event[@target] = Hash.new
+      event.set(@target, Hash.new)
       oui.each do |key, value|
-        event[@target][key.to_s] = value
+        event.set("[#{@target}][#{key.to_s}]", value)
       end
 
       # filter_matched should go in the last line of our successful code
       filter_matched(event)
     end
   end # def filter
-end # class LogStash::Filters::Example
+end # class LogStash::Filters::Oui
