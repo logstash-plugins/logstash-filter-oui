@@ -1,6 +1,6 @@
 # Logstash Plugin
 
-[![Travis Build Status](https://travis-ci.org/logstash-plugins/logstash-filter-oui.svg)](https://travis-ci.org/logstash-plugins/logstash-filter-oui)
+[![Travis Build Status](https://travis-ci.com/logstash-plugins/logstash-filter-oui.svg)](https://travis-ci.com/logstash-plugins/logstash-filter-oui)
 
 This is a plugin for [Logstash](https://github.com/elastic/logstash).
 
