@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
 
   s.name            = 'logstash-filter-oui'
-  s.version         = '3.0.2'
+  s.version         = ::File.read('version').split("\n").first
   s.platform        = 'java'
   s.licenses        = ['Apache-2.0']
   s.summary         = "Logstash filter to parse OUI data from MAC addresses"
